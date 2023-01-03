@@ -1,0 +1,21 @@
+﻿using Entitylayer.Concrete;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Businesslayer.Abstract
+{
+    public interface ICommentServiceBL
+    {
+
+        void CommentInsertBl(Comment comment);
+        void CommentDeleteBl(Comment comment);
+        void CommentUpdateBl(Comment comment);
+
+        List<Comment> CommentGetListBl();
+
+        Comment CommentGetByIdBL(int id);
+    }
+}
