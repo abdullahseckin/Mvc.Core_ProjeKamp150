@@ -1,4 +1,5 @@
 ﻿using Businesslayer.Abstract;
+using DataAccessLayer.Abstract;
 using Entitylayer.Concrete;
 using System;
 using System.Collections.Generic;
@@ -10,7 +11,14 @@ namespace Businesslayer.Concrete
 {
     public class WriterManagerBL : IWriterServiceBL
     {
-        public void WriterDeleteBl(Writer writer)
+        IWriterDAL _writerDAL;
+
+		public WriterManagerBL(IWriterDAL writerDAL)
+		{
+			_writerDAL = writerDAL;
+		}
+
+		public void WriterDeleteBl(Writer writer)
         {
             throw new NotImplementedException();
         }
@@ -27,7 +35,7 @@ namespace Businesslayer.Concrete
 
         public void WriterInsertBl(Writer writer)
         {
-            throw new NotImplementedException();
+            _writerDAL.InsertDAL(writer);
         }
 
         public void WriterUpdateBl(Writer writer)

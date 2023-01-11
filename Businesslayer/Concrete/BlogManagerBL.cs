@@ -1,8 +1,10 @@
 ﻿using Businesslayer.Abstract;
+using DataAccessLayer.Abstract;
 using Entitylayer.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+
 using System.Text;
 using System.Threading.Tasks;
 
@@ -10,29 +12,53 @@ namespace Businesslayer.Concrete
 {
     public class BlogManagerBL : IBlogServiceBL
     {
-        public void BlogDeleteBl(Blog blog)
+        IBlogDAL _blogDAL;
+
+		public BlogManagerBL(IBlogDAL blogDAL)
+		{
+			_blogDAL = blogDAL;
+		}
+
+		public void BlogDeleteBl(Blog blog)
         {
-            throw new NotImplementedException();
+            _blogDAL.DeleteDAL(blog);
         }
 
         public Blog BlogGetByIdBL(int id)
         {
-            throw new NotImplementedException();
+            return _blogDAL.GetByIdDAL(id);
         }
 
-        public List<Blog> BloggetListBl()
+        public List<Blog> BlogGetListBl()
         {
-            throw new NotImplementedException();
+            return _blogDAL.GetListAllDAL();
         }
 
-        public void BlogInsertBl(Blog blog)
+		public List<Blog> BlogGetByIdListBl(int id)//aynı ısım old ıcın BlogServicede karsılıgı yok
+		{
+			return _blogDAL.GetListAllDAL(x=>x.BlogId==id);
+		}
+
+		public void BlogInsertBl(Blog blog)
         {
-            throw new NotImplementedException();
+            _blogDAL.InsertDAL(blog);
         }
 
+        
         public void BlogUpdateBl(Blog blog)
         {
-            throw new NotImplementedException();
+            _blogDAL.UpdateDAL(blog);
         }
-    }
+
+		public List<Blog> GetListWithCategoryBL()
+		{
+			return _blogDAL.GetListWithCategoryDAL();
+		}
+
+		public List<Blog> GetListByWriterBL(int id)
+		{
+            //37v
+            return _blogDAL.GetListAllDAL(x=>x.WriterID==id);
+		}
+	}
 }

@@ -26,7 +26,9 @@ namespace Entitylayer.Concrete
         //ilişkı
         public List<Comment> Comments { get; set; }  //1---
 
-
+        // ilişki 37
+        public int WriterID { get; set; }
+        public Writer Writer { get; set; }
 
 
 

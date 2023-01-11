@@ -14,9 +14,15 @@ namespace Businesslayer.Abstract
         void BlogDeleteBl(Blog blog);
         void BlogUpdateBl(Blog blog);
 
-        List<Blog> BloggetListBl();
+        List<Blog> BlogGetListBl();
 
         Blog BlogGetByIdBL(int id);
 
-    }
+        //Blog litesinde Categorı Adını Cagırmak ıcın metot tanımladık
+        List<Blog> GetListWithCategoryBL();
+
+		// 37v
+		List<Blog> GetListByWriterBL( int id);
+
+	}
 }

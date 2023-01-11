@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace DataAccessLayer.Migrations
 {
-    public partial class CreateDatabase_İliskiler : Migration
+    public partial class Createdatabase38 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -61,6 +61,20 @@ namespace DataAccessLayer.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "NewsLetters",
+                columns: table => new
+                {
+                    MailID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Mail = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    MailStatus = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_NewsLetters", x => x.MailID);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Writers",
                 columns: table => new
                 {
@@ -90,7 +104,8 @@ namespace DataAccessLayer.Migrations
                     BlogImage = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     BlogCreateDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     BlogStatus = table.Column<bool>(type: "bit", nullable: false),
-                    CategoryID = table.Column<int>(type: "int", nullable: false)
+                    CategoryID = table.Column<int>(type: "int", nullable: false),
+                    WriterID = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -100,6 +115,12 @@ namespace DataAccessLayer.Migrations
                         column: x => x.CategoryID,
                         principalTable: "Categories",
                         principalColumn: "CategoryID",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Blogs_Writers_WriterID",
+                        column: x => x.WriterID,
+                        principalTable: "Writers",
+                        principalColumn: "WriterID",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -133,6 +154,11 @@ namespace DataAccessLayer.Migrations
                 column: "CategoryID");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Blogs_WriterID",
+                table: "Blogs",
+                column: "WriterID");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Comments_BlogId",
                 table: "Comments",
                 column: "BlogId");
@@ -150,13 +176,16 @@ namespace DataAccessLayer.Migrations
                 name: "Contacts");
 
             migrationBuilder.DropTable(
-                name: "Writers");
+                name: "NewsLetters");
 
             migrationBuilder.DropTable(
                 name: "Blogs");
 
             migrationBuilder.DropTable(
                 name: "Categories");
+
+            migrationBuilder.DropTable(
+                name: "Writers");
         }
     }
 }

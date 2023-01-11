@@ -9,6 +9,10 @@ namespace DataAccessLayer.Abstract
 {
     public interface IBlogDAL : IGenericDAL<Blog>
     {
+		// blog içindeki Categorı Adını Lıstemek için
+		// buraya yenı metot tanımladık
 
-    }
+		List<Blog> GetListWithCategoryDAL();
+
+	}
 }

@@ -16,5 +16,8 @@ namespace Entitylayer.Concrete
         public string WriterPassword { get; set; }
         public bool WriterStatus { get; set; }
 
+        // ilişki 37 
+        public List<Blog> Blogs { get; set;} //1--
+
     }
 }

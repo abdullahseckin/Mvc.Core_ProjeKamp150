@@ -9,8 +9,9 @@ using System.Threading.Tasks;
 
 namespace DataAccessLayer.Entityframework
 {
-    internal class EfWriterRepositoryDAL : GenericRepositoryDAL<Writer>, IWriterDAL
+    public class EfWriterRepositoryDAL : GenericRepositoryDAL<Writer>, IWriterDAL
     {
+
 
     }
 }
